@@ -30,16 +30,17 @@ const Contact = ({ data }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       // Send message to backend
-      const response = await axios.post('http://localhost:8000/api/contact', formData);
-      
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+      const response = await axios.post(`${apiUrl}/api/contact`, formData);
+
       toast({
         title: "Message Sent Successfully!",
         description: "Your message has been sent and I've been notified via email. I'll get back to you soon!",
       });
-      
+
       // Clear the form
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
