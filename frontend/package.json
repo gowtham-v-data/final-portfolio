@@ -61,7 +61,8 @@
         "build": "craco build",
         "test": "craco test",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build"
+        "deploy": "cd build && git init && git add -A && git commit -m 'Deploy' && git branch -M gh-pages && git remote add origin https://github.com/gowtham-v-data/final-portfolio.git 2>nul || git remote set-url origin https://github.com/gowtham-v-data/final-portfolio.git && git push -f origin gh-pages && cd .. && rmdir /s /q build\\.git",
+        "deploy:gh-pages": "gh-pages -d build --dest ."
     },
     "browserslist": {
         "production": [
